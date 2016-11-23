@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import au.com.edimoto.UserBean;
 
+
+
+
+
 /**
  * Created by edicson on 21/11/16.
  */
@@ -22,7 +26,7 @@ public class Example {
 	
     @RequestMapping("/")
     String home() {
-        return "Hello World "+userBean.getName()+"!!!";
+		return "Hello World " + userBean.getName() + " !!!!";
     }
 
     public static void main(String[] args) throws Exception {
