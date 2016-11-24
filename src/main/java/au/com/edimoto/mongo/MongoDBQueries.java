@@ -1,6 +1,8 @@
 package au.com.edimoto.mongo;
 
+import com.mongodb.Block;
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
@@ -9,17 +11,48 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.and;
+
 import static java.util.Arrays.asList;
 
 /**
  * Created by edicson on 23/11/16.
  */
-public class Connect {
-    public Connect() {
+public class MongoDBQueries {
 
+    private static MongoClient mongoClient;
+    private static MongoDatabase db;
 
-        MongoClient mongoClient = new MongoClient();
-        MongoDatabase db = mongoClient.getDatabase("test");
+    public MongoDBQueries() {
+        mongoClient = new MongoClient();
+        db = mongoClient.getDatabase("test");
+    }
+
+    public void listMongoRecord(){
+        FindIterable<Document> iterable = db.getCollection("restaurants").find();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                System.out.println(document);
+            }
+        });
+    }
+
+    public void listMongoRecord(Document document){
+//        FindIterable<Document> iterable = db.getCollection("restaurants").find(document);
+        FindIterable<Document> iterable = db.getCollection("restaurants").find(and(eq("cuisine", "Italian"), eq("address.zipcode", "10075")));
+
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                System.out.println(document);
+            }
+        });
+    }
+
+    public void insertMongoRecord(){
+
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
         try {
             db.getCollection("restaurants").insertOne(
@@ -45,5 +78,8 @@ public class Connect {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
     }
+
+
 }
