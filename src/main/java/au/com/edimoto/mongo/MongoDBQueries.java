@@ -2,6 +2,8 @@ package au.com.edimoto.mongo;
 
 import com.mongodb.Block;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
@@ -9,6 +11,7 @@ import org.bson.Document;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Locale;
 
 import static com.mongodb.client.model.Filters.eq;
@@ -21,19 +24,29 @@ import static java.util.Arrays.asList;
  */
 public class MongoDBQueries {
 
+    static String host, dbname, user, password;
     private static MongoClient mongoClient;
     private static MongoDatabase db;
-    char[] password = new char[] {'b', 'i', 'g', 'f', 'o', 'o','t','6','9'};
+
     public MongoDBQueries() {
+
+        host = "ds163377.mlab.com";
+        dbname = "test";
+        user = "edicsonm";
+        password = "bigfoot69";
+
+        MongoCredential credential = MongoCredential.createCredential(user, dbname, password.toCharArray());
+        mongoClient = new MongoClient(new ServerAddress(host), Arrays.asList(credential));
+
 //        mongoClient = new MongoClient();
-        mongoClient = new MongoClient("ds163377.mlab.com", 63377);
+//        mongoClient = new MongoClient("ds163377.mlab.com", 63377);
         db = mongoClient.getDatabase("test");
-        boolean authenticated = db.authenticate("edicsonm", "bigfoot69".toCharArray());
-        if (authenticated) {
-            System.out.println("Successfully logged in to MongoDB!");
-        } else {
-            System.out.println("Invalid username/password");
-        }
+//        boolean authenticated = db.authenticate("edicsonm", "bigfoot69".toCharArray());
+//        if (authenticated) {
+//            System.out.println("Successfully logged in to MongoDB!");
+//        } else {
+//            System.out.println("Invalid username/password");
+//        }
         
     }
 
