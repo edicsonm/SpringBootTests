@@ -23,10 +23,18 @@ public class MongoDBQueries {
 
     private static MongoClient mongoClient;
     private static MongoDatabase db;
-
+    char[] password = new char[] {'b', 'i', 'g', 'f', 'o', 'o','t','6','9'};
     public MongoDBQueries() {
-        mongoClient = new MongoClient();
+//        mongoClient = new MongoClient();
+        mongoClient = new MongoClient("ds163377.mlab.com", 63377);
         db = mongoClient.getDatabase("test");
+        boolean authenticated = db.authenticate("edicsonm", "bigfoot69".toCharArray());
+        if (authenticated) {
+            System.out.println("Successfully logged in to MongoDB!");
+        } else {
+            System.out.println("Invalid username/password");
+        }
+        
     }
 
     public void listMongoRecord(){
