@@ -26,30 +26,13 @@ public class MongoDBQueries {
     private static MongoDatabase db;
 
     public MongoDBQueries() {
-
-        MongoClientURI connectionString = new MongoClientURI("mongodb://edicsonm:bigfoot69@ds163377.mlab.com:63377");
-        MongoClient mongoClient = new MongoClient(connectionString);
-        db = mongoClient.getDatabase("edicsonm");
-
-
-//        host = "ds163377.mlab.com";
-//        dbname = "edicsonm";
-//        user = "edicsonm";
-//        password = "bigfoot69";
-//
-//        MongoCredential credential = MongoCredential.createCredential(user, dbname, password.toCharArray());
-//        mongoClient = new MongoClient(new ServerAddress(host), Arrays.asList(credential));
+        MongoClientURI connectionString  = new MongoClientURI("mongodb://edicsonm:bigfoot69@ds163377.mlab.com:63377/edicsonm");
+        mongoClient = new MongoClient(connectionString);
+        db = mongoClient.getDatabase(connectionString.getDatabase());
 
 //        mongoClient = new MongoClient();
-//        mongoClient = new MongoClient("ds163377.mlab.com", 63377);
 //        db = mongoClient.getDatabase("test");
-//        boolean authenticated = db.authenticate("edicsonm", "bigfoot69".toCharArray());
-//        if (authenticated) {
-//            System.out.println("Successfully logged in to MongoDB!");
-//        } else {
-//            System.out.println("Invalid username/password");
-//        }
-        
+
     }
 
     public void listMongoRecord(){
