@@ -1,9 +1,6 @@
 package au.com.edimoto.mongo;
 
-import com.mongodb.Block;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoCredential;
-import com.mongodb.ServerAddress;
+import com.mongodb.*;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
@@ -30,17 +27,22 @@ public class MongoDBQueries {
 
     public MongoDBQueries() {
 
-        host = "ds163377.mlab.com";
-        dbname = "test";
-        user = "edicsonm";
-        password = "bigfoot69";
+        MongoClientURI connectionString = new MongoClientURI("mongodb://edicsonm:bigfoot69@ds163377.mlab.com:63377");
+        MongoClient mongoClient = new MongoClient(connectionString);
+        db = mongoClient.getDatabase("edicsonm");
 
-        MongoCredential credential = MongoCredential.createCredential(user, dbname, password.toCharArray());
-        mongoClient = new MongoClient(new ServerAddress(host), Arrays.asList(credential));
+
+//        host = "ds163377.mlab.com";
+//        dbname = "edicsonm";
+//        user = "edicsonm";
+//        password = "bigfoot69";
+//
+//        MongoCredential credential = MongoCredential.createCredential(user, dbname, password.toCharArray());
+//        mongoClient = new MongoClient(new ServerAddress(host), Arrays.asList(credential));
 
 //        mongoClient = new MongoClient();
 //        mongoClient = new MongoClient("ds163377.mlab.com", 63377);
-        db = mongoClient.getDatabase("test");
+//        db = mongoClient.getDatabase("test");
 //        boolean authenticated = db.authenticate("edicsonm", "bigfoot69".toCharArray());
 //        if (authenticated) {
 //            System.out.println("Successfully logged in to MongoDB!");
