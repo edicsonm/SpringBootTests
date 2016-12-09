@@ -6,8 +6,76 @@
 	<groupId>au.com.edimoto</groupId>
 	<artifactId>SpringBootTests</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<!-- Inherit defaults from Spring Boot -->
+
+
 	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.1.RELEASE</version>
+	</parent>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+<!--	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.0.BUILD-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>-->
+
+	<!--<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.0.BUILD-SNAPSHOT</version>
@@ -17,7 +85,7 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-	<!-- Add typical dependencies for a web application -->
+	&lt;!&ndash; Add typical dependencies for a web application &ndash;&gt;
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -30,15 +98,15 @@
 			<optional>true</optional>
 		</dependency>
 
-		<dependency>
+		&lt;!&ndash;<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
 			<version>3.3.0</version>
-		</dependency>
+		</dependency>&ndash;&gt;
 
 	</dependencies>
 
-	<!-- Package as an executable jar -->
+	&lt;!&ndash; Package as an executable jar &ndash;&gt;
 	<build>
 		<plugins>
 			<plugin>
@@ -48,8 +116,8 @@
 		</plugins>
 	</build>
 
-	<!-- Add Spring repositories -->
-	<!-- (you don't need this if you are using a .RELEASE version) -->
+	&lt;!&ndash; Add Spring repositories &ndash;&gt;
+	&lt;!&ndash; (you don't need this if you are using a .RELEASE version) &ndash;&gt;
 	<repositories>
 		<repository>
 			<id>spring-snapshots</id>
@@ -72,5 +140,5 @@
 			<id>spring-milestones</id>
 			<url>http://repo.spring.io/milestone</url>
 		</pluginRepository>
-	</pluginRepositories>
+	</pluginRepositories>-->
 </project>
